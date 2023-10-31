@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block 'start'%}
+
+
+    <div class="container">
+        <form class='col-6 mx-auto card mt-2 shadow-lg p-3' method="post" novalidate>
+          {% csrf_token %}
+        
+   
+          <h2>User Profile</h2>
+          <hr>
+        
+  
+  
+        {% for form in form %}
+        {{form.label_tag}}
+        {{form}}
+        {{form.errors}}
+          
+        {% endfor %}
+      
+        
+          <button type="submit" class="btn btn-primary mt-4">Update Account</button>
+        </form>
+    </div>
+
+
+{% endblock 'start' %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block 'start' %}
+<div class="container">
+    <form action="" class="card shadow-lg mx-auto col-6 p-5" method="post" novalidate>
+        {% csrf_token %}
+        <h2>Change Password</h2>
+        <hr>
+        
+
+        {% for form in change_pass  %}
+          {{form.label_tag}}
+          {{form}}
+          {{form.errors}}
+        {% endfor %}
+    
+
+    
+    
+    
+        <button type="submit" class="btn btn-primary mt-3">Change Password</button>
+    
+    </form>
+</div>
+
+
+
+{% endblock 'start' %}

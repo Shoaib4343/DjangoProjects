@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block 'start' %}
+
+
+<div class="container mt-5">
+  <form class="col-6 mx-auto card shadow-lg p-4" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2>Recipe Form</h2>
+    <hr>
+    <div class="mb-3">
+      <label for="recipe_name" class="form-label">Recipe Name</label>
+      <input type="text" name="recipe_name" class="form-control" id="recipe_name" value="{{query.recipe_name}}">
+    </div>
+
+    <div class="mb-3">
+      <label for="recipe_discription" class="form-label">Recipe Discription</label>
+      <textarea name="recipe_discription" id="recipe_discription" class="form-control" value=''> {{query.recipe_discription}}</textarea>
+    </div>
+
+    <div class="mb-3">
+
+      <img src="{{query.recipe_image.url}}" alt="" class="img-fluid rounded-top" style="max-width: 300px; max-height: 200px;"> <br> <br><br>
+      <label for="recipe_image" class="form-label">Recipe Image</label>
+      <input type="file" name="recipe_image" class="form-control" id="recipe_image" value="{{query.recipe_image}}" >
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+
+
+</div>
+
+{% endblock 'start' %}

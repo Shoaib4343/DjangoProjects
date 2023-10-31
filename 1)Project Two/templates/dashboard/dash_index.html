@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block 'start' %}
+
+
+<div class="container card shadow-lg mt-5 p-5">
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Dear User</strong> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <h1>This is dashboard index</h1>
+    <div>
+        <a href="/profile" class="">
+            <button type="submit" class="btn btn-success">Profile</button>
+        </a>
+        <a href="/change_password" class="">
+            <button type="submit" class="btn btn-primary">Change Password</button>
+        </a>
+        <a href="/logout">
+            <button type="submit" class="btn btn-danger">logout</button>
+        </a>
+
+
+      
+
+
+
+    </div>
+</div>
+
+
+{% endblock 'start' %}
