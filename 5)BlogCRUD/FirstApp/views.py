@@ -17,6 +17,12 @@ def index_page(request):
         return redirect('/index')
 
     queryset = BlogModel.objects.all()
+
+    # if request.Get.get('search'):
+    #     queryset = queryset.filter(blog_name__icontains=request.Get.get('search'))
+    if request.GET.get('search'):
+        queryset=queryset.filter(blog_name__icontains=request.GET.get('search'))
+
         
 
     return render(request, "blog.html",{'queryset':queryset})
@@ -26,3 +32,22 @@ def delete_blog(request, id):
     queryset = BlogModel.objects.get(id=id)
     queryset.delete()
     return redirect('/index')
+
+def update_blog(request, id):
+    queryset = BlogModel.objects.get(id=id)
+    if request.method == 'POST':
+        data = request.POST
+        blog_name = data.get('blog_name')
+        blog_discription = data.get('blog_discription')
+        blog_image = request.FILES.get('blog_image')
+
+        queryset.blog_name = blog_name
+        queryset.blog_discription = blog_discription
+
+        if blog_image:
+            queryset.blog_image = blog_image
+        queryset.save()
+        return redirect('/index')
+    
+    return render(request, 'update_blog.html', {'queryset': queryset})
+

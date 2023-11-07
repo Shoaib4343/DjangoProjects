@@ -9,6 +9,9 @@ urlpatterns = [
 
     # delete
     path('delete_blog/<id>', delete_blog, name='delete_blog'),
+
+    # Update
+    path('update_blog/<id>', update_blog, name='update_blog'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block 'start' %}
+<div class="container mt-1">
+  <form class="col-6 mx-auto card shadow-lg p-4" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2>Updaten Blog</h2>
+    <hr>
+    <!-- alter message -->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning {{ message.tags }}-dismissible fade show" role="alert">
+      <strong>Dear User </strong>{{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="mb-3">
+      <label for="blog_name" class="form-label">Blog Name</label>
+      <input type="text" name="blog_name" class="form-control" id="blog_name" value="{{queryset.blog_name}}">
+    </div>
+
+    <div class="mb-3">
+      <label for="blog_discription" class="form-label">Blog Discription</label>
+      <textarea name="blog_discription" id="blog_discription" class="form-control" value=''>{{queryset.blog_discription}}</textarea>
+    </div>
+
+    <div class="mb-3">
+     
+      <img src="{{queryset.blog_image.url}}" alt="" class="img-fluid rounded-top" style="max-width: 300px; max-height: 200px;"> <br> <br><br>
+      <label for="blog_image" class="form-label">Blog Image</label> 
+      
+      <input type="file" name="blog_image" class="form-control" id="blog_image">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+
+ 
+</div>
+
+{% endblock 'start' %}

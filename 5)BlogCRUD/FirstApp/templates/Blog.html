@@ -32,6 +32,34 @@
   </form>
 
 
+
+   <!-- <div class="div mt-5  col-10 mx-auto">
+    <div class="div col-7 mx-auto card shadow-lg p-3 ">
+      <form action="">
+        <div class="mb-3">
+          <label for="search" class="form-label">Search</label>
+          <input type="text" name="search" class="form-control" id="search">
+        </div>
+        <button  type="submit" class="btn btn-primary">Search</button>
+      </form>
+
+    </div>
+  </div>  -->
+
+  <div class="div mt-5  col-10 mx-auto">
+    <div class="div col-7 mx-auto card shadow-lg p-3 ">
+      <legend>Search By Blog Name 
+        <form class="d-flex">
+          <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="search">
+          <button class="btn btn-success" type="submit">Search</button>
+        </form>
+
+      </legend>
+
+    </div>
+  </div>
+
+
   <table class="table table table-striped mt-5 mb-5 shadow-lg table-bordered">
 
     <thead>
@@ -60,7 +88,9 @@
         
           <!-- <a href="/delete_blog/{{queryset.id}}" class="btn btn-danger">Delete</a> -->
           <td>
-            <a href=" /delete_blog/{{queryset.id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this blog?')">Delete</a>
+            <a href=" /delete_blog/{{queryset.id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this blog?')">Delete</a> <br> <br>
+            
+              <a href=" /update_blog/{{queryset.id}}" class="btn btn-success">Update</a>
           </td>
           
         
