@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.core.paginator import Paginator
 from django.db.models import Q,Sum
-
+from RecipyApp.seed import *
 # Create your views here.
 
 
@@ -30,7 +30,7 @@ def recipe_page(request):
     if request.GET.get('search'):
         queryset=queryset.filter(recipe_name__icontains=request.GET.get('search'))
 
-    return render(request,'recipe.html',{'queryset':queryset})
+    return render(request,'recipe.html',{queryset:'queryset'})
 
 
 def delete_recipe_page(request,id):
@@ -61,6 +61,7 @@ def update_recipe_page(request,id):
 
  #registration form
 def register_page(request):
+    seed_db(100)
     if request.user.is_authenticated:
         return redirect("/recipe")
     if request.method == "POST":
