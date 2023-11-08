@@ -61,7 +61,6 @@ def update_recipe_page(request,id):
 
  #registration form
 def register_page(request):
-    seed_db(100)
     if request.user.is_authenticated:
         return redirect("/recipe")
     if request.method == "POST":
@@ -109,6 +108,7 @@ def login_page(request):
             login(request,user)
             messages.success(request,"Login successfuly")
             return redirect("/recipe")
+        
     return render(request,'login.html')
 
 # logout page
