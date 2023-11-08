@@ -1,5 +1,8 @@
 from django.shortcuts import render,redirect,HttpResponse
 from .models import BlogModel
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate,login,logout
 
 # Create your views here.
 def index_page(request):
@@ -18,8 +21,6 @@ def index_page(request):
 
     queryset = BlogModel.objects.all()
 
-    # if request.Get.get('search'):
-    #     queryset = queryset.filter(blog_name__icontains=request.Get.get('search'))
     if request.GET.get('search'):
         queryset=queryset.filter(blog_name__icontains=request.GET.get('search'))
 
@@ -50,4 +51,49 @@ def update_blog(request, id):
         return redirect('/index')
     
     return render(request, 'update_blog.html', {'queryset': queryset})
+
+
+
+#Registrations Form
+def register_form(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        password = request.POST.get('password')
+
+        user = User.objects.filter(username=username)
+        if user.exists():
+            messages.warning(request, "User Exists")
+
+        else:
+            user = User.objects.create(
+                username=username,
+                first_name = first_name,
+                last_name = last_name,
+            )
+            user.set_password(password)
+            user.save()
+            messages.success(request, 'Registeration successfully')
+            return redirect('/register')
+
+    return render(request, 'register.html')
+
+# Login Form
+def Login_form(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        if not User.objects.filter(username=username).exists():
+            messages.warning(request, 'Invalide Username ')
+            return redirect('/login')
+        user = authenticate(username=username, password=password)
+        if user is None:
+            messages.warning(request, 'Invalide Password ')
+        else:
+            messages.success(request,'login successful')
+            return redirect('/index')
+            
+    return render(request, 'login.html')
 
