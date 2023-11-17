@@ -30,7 +30,7 @@ def recipe_page(request):
     if request.GET.get('search'):
         queryset=queryset.filter(recipe_name__icontains=request.GET.get('search'))
 
-    return render(request,'recipe.html',{queryset:'queryset'})
+    return render(request,'recipe.html',{'queryset':queryset})
 
 
 def delete_recipe_page(request,id):

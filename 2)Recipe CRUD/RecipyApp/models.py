@@ -14,11 +14,8 @@ class RecipeModel(models.Model):
     recipe_name = models.CharField(max_length=100)
     recipe_discription = models.TextField()
     recipe_image = models.ImageField(upload_to='images',null=True, blank=True)
-    recipe_viws_count = models.IntegerField(default=1)
-    # is_deleted = models.BooleanField(default=False)
-
-    # objects=ModelManager()
-    # admin_objects = models.Manager()
+    # recipe_viws_count = models.IntegerField(default=1)
+   
 
    
 

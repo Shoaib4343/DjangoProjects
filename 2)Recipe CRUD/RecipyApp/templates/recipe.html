@@ -66,6 +66,7 @@
       </tr>
     </thead>
     <tbody>
+      
       {% for queryset in queryset %}
         
       
@@ -74,8 +75,14 @@
         <td>{{queryset.recipe_name}}</td>
         <td>{{queryset.recipe_discription}}</td>
         <td>
+          {% if queryset.recipe_image %}
           <img src="{{queryset.recipe_image.url}}" alt="" class="img-fluid rounded-top" style="max-width: 200px; max-height: 100px;">
-        </td>
+       
+          {% else %}
+          <img src="/media/images/NotUploaded.png" alt="" class="img-fluid rounded-top" style="max-width: 200px; max-height: 100px;">
+       
+          {% endif %}
+           </td>
           
         <td>
           <a class="btn btn-danger" href="/delete_recipe/{{queryset.id}}">Delete</a> 
