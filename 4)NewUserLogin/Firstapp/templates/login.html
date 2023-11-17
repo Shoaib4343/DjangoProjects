@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block 'style' %}
+<style>
+    .errorlist{
+      color: red;
+      list-style-type: none;
+      font-weight: bold;
+    }
+  </style>{% endblock 'style' %}
+{% block 'start' %}
+<div class="container ">
+    <form class="col-6 m-auto card mt-1 p-3" method="post" novalidate>
+        {% csrf_token %}
+        <h2>Login Form</h2>
+        <hr>
+
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Dear User</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+
+        {% for form in form %}
+        <div class="mb-1">
+            {{form.label_tag}}
+            {{form}}
+            {{form.errors}}
+        </div>
+        {% endfor %}
+
+        <p>Don't Have Acount <a href="/index">Register Here</a></p>
+
+        <button type="submit" class="btn btn-primary">Logn Here</button>
+    </form>
+
+</div>
+
+{% endblock 'start' %}
