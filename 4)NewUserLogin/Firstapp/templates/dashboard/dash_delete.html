@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block 'start' %}
+<div class="container card shadow-lg mt-5 p-3">
+    <h2>Delete Your Account</h2>
+    <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+    <form method="post">
+        {% csrf_token %}
+        <p>Don't Want To Update Profile <a href="/profile">Go Back</a></p>
+        <button type="submit" class="btn btn-danger">Delete Account</button>
+       
+    </form>
+   
+</div>
+{% endblock 'start' %}
